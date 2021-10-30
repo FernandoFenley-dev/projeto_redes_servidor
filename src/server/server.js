@@ -1,13 +1,15 @@
 const net = require('net');
 const v8 = require('v8');
 
+const MessageBuffer = require('../buffer/MessageBuffer');
+
 const getHousesList = require('../functions/housesList');
 const getHousesForSaleList = require('../functions/forsale');
 const getHouseDetail = require('../functions/houseDetail');
 const getLocationsList = require('../functions/locationsList');
 
 // const ipLocal = 'SEUIP - pega pelo comando ipconfig ou ifconfig';
-const ipLocal = '';
+const ipLocal = '192.168.15.30';
 
 const connectionOptions = {
   port: 29298,
@@ -36,9 +38,18 @@ function initializeConnection() {
       'Client connected to server on ' + JSON.stringify(socket.address())
     );
 
+    let received = new MessageBuffer("\n");
+
     socket.on('data', (data) => {
       console.log('Server client received: ' + data);
       let msg = data.toString();
+      console.log('mensagem recebida', msg);
+      received.push(msg);
+      while (!received.isFinished()) {
+        mgs = received.handleData();
+      }
+
+      console.log('mensagem pronta', msg);
 
       if (msg === 'properties list') {
         const housesList = getHousesList();
@@ -63,6 +74,19 @@ function initializeConnection() {
         keywordsList.forEach((location) => {
           socket.write(location);
         });
+      }
+
+      if (msg.includes('for_sale')) {
+        const params = msg.split(';');
+
+        console.log(params);
+        const property = getHousesForSaleList(params);
+        console.log(property);
+        property.forEach((house) => {
+          const buffer = Buffer.from(JSON.stringify(house) + "\n");
+          socket.write(buffer);
+        });
+        console.log('enviado', property.length);        
       }
     });
 

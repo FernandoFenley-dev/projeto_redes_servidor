@@ -38239,7 +38239,7 @@
             "baths": 2,
             "sub_type": null,
             "baths_1qtr": 1,
-            "garage": null,
+            "garage": 1,
             "stories": null,
             "beds": 3,
             "type": "single_family"
