@@ -8,6 +8,7 @@ const getHousesForSaleList = require('../functions/forsale');
 const getHouseDetail = require('../functions/houseDetail');
 const getLocationsList = require('../functions/locationsList');
 
+// const ipLocal = 'SEUIP - pega pelo comando ipconfig ou ifconfig';
 const ipLocal = '';
 
 const connectionOptions = {
