@@ -37,7 +37,7 @@ function initializeConnection() {
       'Client connected to server on ' + JSON.stringify(socket.address())
     );
 
-    let received = new MessageBuffer("\n");
+    let received = new MessageBuffer('\n');
 
     socket.on('data', (data) => {
       console.log('Server client received: ' + data);
@@ -50,42 +50,43 @@ function initializeConnection() {
 
       console.log('mensagem pronta', msg);
 
-      if (msg === 'properties list') {
+      if (msg === 'properties_list\n') {
         const housesList = getHousesList();
 
+        console.log(housesList);
         housesList.forEach((house) => {
-          const buffer = Buffer.from(JSON.stringify(house));
+          const buffer = Buffer.from(JSON.stringify(house) + '\n');
           socket.write(buffer);
         });
       }
 
       if (msg.includes('property id=')) {
-        const property_id = msg.substring(12);
+        const property_id = msg.split('\n')[0].substring(12);
         const property = getHouseDetail(property_id);
 
-        const buffer = JSON.stringify(property);
+        const buffer = Buffer.from(JSON.stringify(property) + '\n');
         socket.write(buffer);
       }
 
-      if (msg === 'locations suggestion') {
+      if (msg === 'locations suggestion\n') {
         const keywordsList = getLocationsList();
 
         keywordsList.forEach((location) => {
-          socket.write(location);
+          console.log(location);
+          const buffer = Buffer.from(location + '\n');
+          socket.write(buffer);
         });
       }
 
       if (msg.includes('for_sale')) {
         const params = msg.split(';');
 
-        console.log(params);
         const property = getHousesForSaleList(params);
-        console.log(property);
         property.forEach((house) => {
-          const buffer = Buffer.from(JSON.stringify(house) + "\n");
+          const buffer = Buffer.from(JSON.stringify(house) + '\n');
           socket.write(buffer);
         });
-        console.log('enviado', property.length);        
+        console.log('enviado', property.length);
       }
     });
 
