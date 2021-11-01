@@ -1,14 +1,14 @@
 const db = require('../../db_us_estate.json');
 
-function getHousesForSaleList(params) {
+function getHousesForRentList(params) {
   let result = db.data.home_search.results.filter(
     (obj) =>
-      obj.status === 'for_sale' &&
-      obj.list_price >= Number(params[1]) &&
-      obj.list_price <= Number(params[2])
+      obj.status === 'for_rent' &&
+       obj.list_price_min >= Number(params[1]) &&
+       obj.list_price_max <= Number(params[2])
   );
 
-  console.log('preco casas', result.length);
+  console.log('Preço das casas', result.length);
 
   // quartos
   if (Number(params[3]) === 0) {
@@ -17,7 +17,7 @@ function getHousesForSaleList(params) {
     result = result.filter((obj) => obj.description.beds <= Number(params[3]));
   }
 
-  console.log('quartos casas', result.length);
+  console.log('Qtde quartos', result.length);
 
   // banheiros
   if (Number(params[4]) === 0) {
@@ -28,7 +28,7 @@ function getHousesForSaleList(params) {
     );
   }
 
-  console.log('banheiros casas', result.length);
+  console.log('Qtdes banheiros', result.length);
 
   // garagem
   if (Number(params[5]) === 0) {
@@ -39,9 +39,9 @@ function getHousesForSaleList(params) {
     );
   }
 
-  console.log('garagem casas', result.length);
+  console.log('Qtde vagas carro', result.length);
 
   return result;
 }
 
-module.exports = getHousesForSaleList;
+module.exports = getHousesForRentList;

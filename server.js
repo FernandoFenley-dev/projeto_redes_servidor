@@ -5,6 +5,7 @@ const MessageBuffer = require('../buffer/MessageBuffer');
 
 const getHousesList = require('../functions/housesList');
 const getHousesForSaleList = require('../functions/forsale');
+const getHousesForRentList = require('../functions/forrent');
 const getHouseDetail = require('../functions/houseDetail');
 const getLocationsList = require('../functions/locationsList');
 
@@ -81,6 +82,19 @@ function initializeConnection() {
 
         console.log(params);
         const property = getHousesForSaleList(params);
+        console.log(property);
+        property.forEach((house) => {
+          const buffer = Buffer.from(JSON.stringify(house) + "\n");
+          socket.write(buffer);
+        });
+        console.log('enviado', property.length);        
+      }
+
+      if (msg.includes('for_rent')) {
+        const params = msg.split(';');
+
+        console.log(params);
+        const property = getHousesForRentList(params);
         console.log(property);
         property.forEach((house) => {
           const buffer = Buffer.from(JSON.stringify(house) + "\n");
