@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "idUser": 7,
+      "email": "A",
+      "password": "1",
+      "proposals": [
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3132498955",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "9646838136",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3132498955",
+          "price": "1505"
+        },
+        {
+          "propertyId": "9230670490",
+          "price": "3980"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3202647796",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3640008816",
+          "price": "1635"
+        }
+      ]
+    },
+    {
+      "idUser": 8,
+      "email": "James",
+      "password": "12",
+      "proposals": [
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3202647796",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3598829949",
+          "price": "1505"
+        }
+      ]
+    },
+    {
+      "idUser": 9,
+      "email": "Iago",
+      "password": "123",
+      "proposals": [
+        {
+          "propertyId": "1229586886",
+          "price": "undefined"
+        }
+      ]
+    }
+  ]
+}

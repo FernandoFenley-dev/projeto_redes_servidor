@@ -1,6 +1,11 @@
 const db = require('../../db_us_estate.json');
+const dbUsers = require('../../db_users.json');
+
 
 function getHousesForRentList(params) {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
+  console.log(...params);
+
   let result = db.data.home_search.results.filter(
     (obj) =>
       obj.status === 'for_rent' &&
@@ -40,6 +45,31 @@ function getHousesForRentList(params) {
     }
   
     console.log('garagem casas', result.length);
+
+   
+    if(Number(params[8]) > 0){
+      let index=0;
+      console.log("IDUSER: "+params[8]);
+      for (var i = 0; i < dbUsers.users.length; ++i) {
+        if (dbUsers.users[i].idUser == Number(params[8])) {
+          console.log("iduser: "+dbUsers.users[i].idUser);
+          index=i;
+        }
+      }
+      let proposals=dbUsers.users[index].proposals;
+      let array=[];
+      for (var i = 0; i < proposals.length; ++i) {
+        array.push(proposals[i].propertyId);
+      }      
+      console.log("ARRAY::::::");
+      console.log(array);
+      console.log(result.length);
+      result = result.filter(
+        (obj) => array.includes(obj.property_id));
+      console.log(result);
+
+
+    }
 
   return result;
 }

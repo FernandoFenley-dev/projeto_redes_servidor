@@ -10,7 +10,7 @@ const getHouseDetail = require('../functions/houseDetail');
 const getLocationsList = require('../functions/locationsList');
 
 // const ipLocal = 'SEUIP - pega pelo comando ipconfig ou ifconfig';
-const ipLocal = '';
+const ipLocal = '192.168.1.10';
 
 const connectionOptions = {
   port: 29298,

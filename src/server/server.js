@@ -8,8 +8,11 @@ const getHousesForSaleList = require('../functions/forsale');
 const getHousesForRentList = require('../functions/forrent');
 const getHouseDetail = require('../functions/houseDetail');
 const getLocationsList = require('../functions/locationsList');
+const getUser = require('../functions/login');
+const registerUser = require('../functions/register');
+const proposal = require('../functions/proposal');
 
-const ipLocal = '';
+const ipLocal = '192.168.1.10';
 
 const connectionOptions = {
   port: 29298,
@@ -99,6 +102,33 @@ function initializeConnection() {
           socket.write(buffer);
         });
         console.log('enviado', property.length);
+      }
+      if (msg.includes('login')) {
+        const params = msg.split(';');
+
+        const user = getUser(params);
+        console.log("USUARIO lenght: "+user.length);
+
+        if(!(user.length == 0)){
+          socket.write(String(user[0].idUser));
+        }
+
+      }
+      if (msg.includes('register')) {
+        const params = msg.split(';');
+
+        const property = registerUser(params);
+    
+        const buffer = Buffer.from(JSON.stringify(property));
+        socket.write(buffer);
+        console.log('Register em : ', property);
+      }
+      if (msg.includes('proposal')) {
+        const params = msg.split(';');
+
+        const property = proposal(params);
+    
+        console.log('Proposal em : ', property);
       }
     });
 
