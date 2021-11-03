@@ -41,9 +41,9 @@ function initializeConnection() {
     let received = new MessageBuffer('\n');
 
     socket.on('data', (data) => {
-      console.log('Server client received: ' + data);
       let msg = data.toString();
       console.log('mensagem recebida', msg);
+
       received.push(msg);
       while (!received.isFinished()) {
         mgs = received.handleData();
@@ -54,7 +54,7 @@ function initializeConnection() {
       if (msg === 'properties_list\n') {
         const housesList = getHousesList();
 
-        console.log(housesList);
+        console.log(housesList.length);
         housesList.forEach((house) => {
           const buffer = Buffer.from(JSON.stringify(house) + '\n');
           socket.write(buffer);
@@ -69,11 +69,10 @@ function initializeConnection() {
         socket.write(buffer);
       }
 
-      if (msg === 'locations suggestion\n') {
+      if (msg === 'locations_suggestion\n') {
         const keywordsList = getLocationsList();
 
         keywordsList.forEach((location) => {
-          console.log(location);
           const buffer = Buffer.from(location + '\n');
           socket.write(buffer);
         });
@@ -82,12 +81,12 @@ function initializeConnection() {
       if (msg.includes('for_sale')) {
         const params = msg.split(';');
 
-        const property = getHousesForSaleList(params);
-        property.forEach((house) => {
+        const properties = getHousesForSaleList(params);
+        properties.forEach((house) => {
           const buffer = Buffer.from(JSON.stringify(house) + '\n');
           socket.write(buffer);
         });
-        console.log('enviado', property.length);
+        console.log('enviado', properties.length);
       }
 
       if (msg.includes('for_rent')) {
