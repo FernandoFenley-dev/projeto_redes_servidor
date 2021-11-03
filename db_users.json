@@ -92,6 +92,12 @@
           "price": "undefined"
         }
       ]
+    },
+    {
+      "idUser": 10,
+      "email": "meuEmail123@hotmail.com",
+      "password": "email123",
+      "proposals": []
     }
   ]
 }

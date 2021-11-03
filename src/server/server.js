@@ -1,5 +1,4 @@
 const net = require('net');
-const v8 = require('v8');
 
 const MessageBuffer = require('../buffer/MessageBuffer');
 
@@ -12,7 +11,7 @@ const getUser = require('../functions/login');
 const registerUser = require('../functions/register');
 const proposal = require('../functions/proposal');
 
-const ipLocal = '192.168.1.10';
+const ipLocal = '';
 
 const connectionOptions = {
   port: 29298,
