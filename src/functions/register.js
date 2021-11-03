@@ -8,7 +8,8 @@ function registerUser(params) {
       idUser:newUserId,
       email:params[6],
       password: params[7].replace("\n",""),
-      proposals:[]
+      proposals:[],
+      favorites:[]
     }
     data.users.push(newUser);
     let json = JSON.stringify(data,null, 2);

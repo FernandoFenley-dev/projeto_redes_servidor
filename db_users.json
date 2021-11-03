@@ -79,6 +79,14 @@
         {
           "propertyId": "3598829949",
           "price": "1505"
+        },
+        {
+          "propertyId": "9090325362",
+          "price": "3067"
+        },
+        {
+          "propertyId": "3202647796",
+          "price": "2560"
         }
       ]
     },
@@ -90,6 +98,25 @@
         {
           "propertyId": "1229586886",
           "price": "undefined"
+        }
+      ]
+    },
+    {
+      "idUser": 10,
+      "email": "Iago",
+      "password": "1",
+      "proposals": [
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        }
+      ],
+      "favorites": [
+        {
+          "propertyId": "3132498955"
+        },
+        {
+          "propertyId": "3330923468"
         }
       ]
     }

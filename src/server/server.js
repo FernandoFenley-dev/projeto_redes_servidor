@@ -11,6 +11,8 @@ const getLocationsList = require('../functions/locationsList');
 const getUser = require('../functions/login');
 const registerUser = require('../functions/register');
 const proposal = require('../functions/proposal');
+const favorites = require('../functions/favorites');
+
 
 const ipLocal = '192.168.1.10';
 
@@ -128,7 +130,14 @@ function initializeConnection() {
 
         const property = proposal(params);
     
-        console.log('Proposal em : ', property);
+        console.log('Proposal : ', property);
+      }
+      if (msg.includes('favorite')) {
+        const params = msg.split(';');
+
+        const property = favorites(params);
+    
+        console.log('Favorite : ', property);
       }
     });
 
