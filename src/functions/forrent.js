@@ -30,6 +30,16 @@ function getHousesForRentList(params) {
 
   console.log('Qtdes banheiros', result.length);
 
+    // garagem
+    if (Number(params[5]) === 0) {
+      result = result.filter((obj) => obj.description.garage_max >= 0);
+    } else {
+      result = result.filter(
+        (obj) => obj.description.garage_max == Number(params[5])
+      );
+    }
+  
+    console.log('garagem casas', result.length);
 
   return result;
 }
