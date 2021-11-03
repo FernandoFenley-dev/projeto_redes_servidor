@@ -119,11 +119,13 @@ function initializeConnection() {
       if (msg.includes('register')) {
         const params = msg.split(';');
 
-        const property = registerUser(params);
-    
-        const buffer = Buffer.from(JSON.stringify(property));
-        socket.write(buffer);
-        console.log('Register em : ', property);
+        const user = registerUser(params);
+        console.log("-------------------");
+        
+        console.log(user);
+        if(!(user.length == 0)){
+          socket.write(String(user[0].idUser));
+        }
       }
       if (msg.includes('proposal')) {
         const params = msg.split(';');

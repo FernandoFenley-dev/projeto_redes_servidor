@@ -17,7 +17,12 @@ function registerUser(params) {
     const noop = () => {};
     fs.writeFile('../db_users.json', json, 'utf8',noop);
     console.log('USERs  ', json);
-    return newUser;
+    let result = db.users.filter(
+      (obj) =>
+        obj.idUser == newUserId
+    );
+
+    return result;
   }
 
 module.exports = registerUser;

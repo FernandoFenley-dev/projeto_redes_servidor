@@ -18,6 +18,52 @@
           "propertyId": "3330923468"
         }
       ]
+    },
+    {
+      "idUser": 11,
+      "email": "Teste",
+      "password": "1234",
+      "proposals": [
+        {
+          "propertyId": "3202647796",
+          "price": "3100"
+        }
+      ],
+      "favorites": [
+        {
+          "propertyId": "3185084226"
+        },
+        {
+          "propertyId": "3185084226"
+        },
+        {
+          "propertyId": "3640008816"
+        }
+      ]
+    },
+    {
+      "idUser": 12,
+      "email": "Iago",
+      "password": "12",
+      "proposals": [
+        {
+          "propertyId": "3132498955",
+          "price": "1700"
+        },
+        {
+          "propertyId": "4721055870",
+          "price": "1505"
+        },
+        {
+          "propertyId": "3132498955",
+          "price": "1505"
+        }
+      ],
+      "favorites": [
+        {
+          "propertyId": "3618096442"
+        }
+      ]
     }
   ]
 }
