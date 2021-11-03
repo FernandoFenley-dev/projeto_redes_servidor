@@ -1,95 +1,67 @@
 {
   "users": [
     {
-      "idUser": 7,
-      "email": "A",
+      "idUser": 10,
+      "email": "Iago",
       "password": "1",
       "proposals": [
         {
           "propertyId": "4721055870",
           "price": "1505"
+        }
+      ],
+      "favorites": [
+        {
+          "propertyId": "3132498955"
         },
         {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "3132498955",
-          "price": "1505"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "9646838136",
-          "price": "1505"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "3132498955",
-          "price": "1505"
-        },
-        {
-          "propertyId": "9230670490",
-          "price": "3980"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "4721055870",
-          "price": "1505"
-        },
-        {
-          "propertyId": "3202647796",
-          "price": "1505"
-        },
-        {
-          "propertyId": "3640008816",
-          "price": "1635"
+          "propertyId": "3330923468"
         }
       ]
     },
     {
-      "idUser": 8,
-      "email": "James",
+      "idUser": 11,
+      "email": "Teste",
+      "password": "1234",
+      "proposals": [
+        {
+          "propertyId": "3202647796",
+          "price": "3100"
+        }
+      ],
+      "favorites": [
+        {
+          "propertyId": "3185084226"
+        },
+        {
+          "propertyId": "3185084226"
+        },
+        {
+          "propertyId": "3640008816"
+        }
+      ]
+    },
+    {
+      "idUser": 12,
+      "email": "Iago",
       "password": "12",
       "proposals": [
         {
+          "propertyId": "3132498955",
+          "price": "1700"
+        },
+        {
           "propertyId": "4721055870",
           "price": "1505"
         },
         {
-          "propertyId": "3202647796",
-          "price": "1505"
-        },
-        {
-          "propertyId": "3598829949",
+          "propertyId": "3132498955",
           "price": "1505"
         }
-      ]
-    },
-    {
-      "idUser": 9,
-      "email": "Iago",
-      "password": "123",
-      "proposals": [
+      ],
+      "favorites": [
         {
-          "propertyId": "1229586886",
-          "price": "undefined"
+          "propertyId": "3618096442"
         }
       ]
     },

@@ -46,31 +46,65 @@ function getHousesForRentList(params) {
   
     console.log('garagem casas', result.length);
 
-   
-    if(Number(params[8]) > 0){
-      let index=0;
-      console.log("IDUSER: "+params[8]);
-      for (var i = 0; i < dbUsers.users.length; ++i) {
-        if (dbUsers.users[i].idUser == Number(params[8])) {
-          console.log("iduser: "+dbUsers.users[i].idUser);
-          index=i;
+    console.log('PARAMETRO 9');
+    console.log(params[6]);
+    console.log(params[7]);
+    console.log(params[8]);
+    console.log("nove" + params[9]);
+    console.log(" DEZ "+ params[10]);
+
+
+
+
+    if(String(params[9]).length < 8){
+      console.log("DEU FALSE MAN0");
+
+      if(Number(params[8]) > 0){
+        let index=0;
+        console.log("IDUSER: "+params[8]);
+        for (var i = 0; i < dbUsers.users.length; ++i) {
+          if (dbUsers.users[i].idUser == Number(params[8])) {
+            console.log("iduser: "+dbUsers.users[i].idUser);
+            index=i;
+          }
         }
+        let proposals=dbUsers.users[index].favorites;
+        let array=[];
+        for (var i = 0; i < proposals.length; ++i) {
+          array.push(proposals[i].propertyId);
+        }      
+        console.log("ARRAY::::::");
+        console.log(array);
+        console.log(result.length);
+        result = result.filter(
+          (obj) => array.includes(obj.property_id));
+        console.log(result);
       }
-      let proposals=dbUsers.users[index].proposals;
-      let array=[];
-      for (var i = 0; i < proposals.length; ++i) {
-        array.push(proposals[i].propertyId);
-      }      
-      console.log("ARRAY::::::");
-      console.log(array);
-      console.log(result.length);
-      result = result.filter(
-        (obj) => array.includes(obj.property_id));
-      console.log(result);
 
-
+      
+    }else{
+      if(Number(params[8]) > 0){
+        let index=0;
+        console.log("IDUSER: "+params[8]);
+        for (var i = 0; i < dbUsers.users.length; ++i) {
+          if (dbUsers.users[i].idUser == Number(params[8])) {
+            console.log("iduser: "+dbUsers.users[i].idUser);
+            index=i;
+          }
+        }
+        let proposals=dbUsers.users[index].proposals;
+        let array=[];
+        for (var i = 0; i < proposals.length; ++i) {
+          array.push(proposals[i].propertyId);
+        }      
+        console.log("ARRAY::::::");
+        console.log(array);
+        console.log(result.length);
+        result = result.filter(
+          (obj) => array.includes(obj.property_id));
+        console.log(result);
+      }
     }
-
   return result;
 }
 

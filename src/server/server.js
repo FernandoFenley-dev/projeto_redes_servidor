@@ -10,6 +10,8 @@ const getLocationsList = require('../functions/locationsList');
 const getUser = require('../functions/login');
 const registerUser = require('../functions/register');
 const proposal = require('../functions/proposal');
+const favorites = require('../functions/favorites');
+
 
 const ipLocal = '';
 
@@ -115,18 +117,27 @@ function initializeConnection() {
       if (msg.includes('register')) {
         const params = msg.split(';');
 
-        const property = registerUser(params);
-    
-        const buffer = Buffer.from(JSON.stringify(property));
-        socket.write(buffer);
-        console.log('Register em : ', property);
+        const user = registerUser(params);
+        console.log("-------------------");
+        
+        console.log(user);
+        if(!(user.length == 0)){
+          socket.write(String(user[0].idUser));
+        }
       }
       if (msg.includes('proposal')) {
         const params = msg.split(';');
 
         const property = proposal(params);
     
-        console.log('Proposal em : ', property);
+        console.log('Proposal : ', property);
+      }
+      if (msg.includes('favorite')) {
+        const params = msg.split(';');
+
+        const property = favorites(params);
+    
+        console.log('Favorite : ', property);
       }
     });
 
