@@ -14,7 +14,7 @@ const favorites = require('../functions/favorites');
 const ipLocal = '';
 
 const connectionOptions = {
-  port: process.env.PORT || 29298,
+  port: 29298,
   host: '',
   reuseAddress: true,
 };
@@ -32,7 +32,7 @@ function initializeConnection() {
     socket.write('Connection established\r\n');
   });
 
-  server.listen(connectionOptions, () => {
+  server.listen(process.env.PORT || connectionOptions.port, () => {
     const port = server.address()?.port;
     if (!port) {
       throw new Error('Port not found');
