@@ -14,7 +14,7 @@ const favorites = require('../functions/favorites');
 const ipLocal = '';
 
 const connectionOptions = {
-  port: 29298,
+  port: process.env.PORT || 29298,
   host: '',
   reuseAddress: true,
 };
