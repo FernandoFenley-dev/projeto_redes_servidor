@@ -1,5 +1,6 @@
 const initializeConnection = require('./src/server/server');
-const express = require('express');
+
+const axios = require('axios');
 
 function getIp() {
   var ip = require('ip');
@@ -8,18 +9,16 @@ function getIp() {
 
 let ip = getIp();
 
-
-const app = express();
-const port = 3010;
-
-app.get('/', (req, res) => {
-  
-  res.send(ip);
-});
-
-app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+axios
+  .post('https://shielded-fjord-54509.herokuapp.com/ip', {
+    ip: ip,
+  })
+  .then((res) => {
+    console.log(`statusCode: ${res.status}`);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 console.log('Servidor Iniciado! Iniciar o cliente');
 initializeConnection();

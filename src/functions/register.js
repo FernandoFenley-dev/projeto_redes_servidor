@@ -1,9 +1,19 @@
 const db = require('../../db_users.json');
 
+/*
+
+Função responsável por registrar um novo usuário na dabatase
+--Sintaxe: register;EMAIL;PASSWORD\n
+
+Em que:
+EMAIL: parâmetro do tipo string obrigatório indicando o nome de email do usuário;
+PASSWORD: parâmetro do tipo string obrigatório indicando a senha do usuário;
+
+*/
+
 function registerUser(params) {
     let data = db;
     let newUserId = (data.users[data.users.length-1].idUser)+1;
-    console.log(...params);
     let newUser={
       idUser:newUserId,
       email:params[6],
@@ -16,7 +26,6 @@ function registerUser(params) {
     var fs = require('fs');
     const noop = () => {};
     fs.writeFile('../db_users.json', json, 'utf8',noop);
-    console.log('USERs  ', json);
     let result = db.users.filter(
       (obj) =>
         obj.idUser == newUserId

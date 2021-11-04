@@ -21,6 +21,12 @@ const connectionOptions = {
 
 const server = new net.Server();
 
+/*
+  Função criada para inicialização do Socket no lado do servidor.
+  A função também interpreta todas as mensagens do protocolo e realiza as ações
+  específicas para cada mensagem.
+*/
+
 function initializeConnection() {
   server.on('connection', (socket) => {
     socket.write('Connection established\r\n');
@@ -51,16 +57,19 @@ function initializeConnection() {
 
       console.log('mensagem pronta', msg);
 
+
+      // Mensagem: --Sintaxe: properties_list\n
       if (msg === 'properties_list\n') {
         const housesList = getHousesList();
 
-        console.log(housesList.length);
+        //console.log(housesList);
         housesList.forEach((house) => {
           const buffer = Buffer.from(JSON.stringify(house) + '\n');
           socket.write(buffer);
         });
       }
 
+      // Mensagem: --Sintaxe: house_details; HOUSE_ID\n
       if (msg.includes('property id=')) {
         const property_id = msg.split('\n')[0].substring(12);
         const property = getHouseDetail(property_id);
@@ -69,6 +78,7 @@ function initializeConnection() {
         socket.write(buffer);
       }
 
+      // Mensagem: --Sintaxe: locations_list\n
       if (msg === 'locations_suggestion\n') {
         const keywordsList = getLocationsList();
 
@@ -76,8 +86,11 @@ function initializeConnection() {
           const buffer = Buffer.from(location + '\n');
           socket.write(buffer);
         });
+
+        console.log(keywordsList.length);
       }
 
+      // Mensagem: --Sintaxe: for_sale;PRICE_MIN;PRICE_MAX;BEDS;BATHS;GARAGES\n
       if (msg.includes('for_sale')) {
         const params = msg.split(';');
 
@@ -89,6 +102,7 @@ function initializeConnection() {
         console.log('enviado', properties.length);
       }
 
+      // Mensagem: --Sintaxe: for_rent;PRICE_MIN;PRICE_MAX;BEDS;BATHS;GARAGES\n
       if (msg.includes('for_rent')) {
         const params = msg.split(';');
 
@@ -99,23 +113,27 @@ function initializeConnection() {
         });
         console.log('enviado', property.length);
       }
+
+      // Mensagem: --Sintaxe: login;PRICE_MIN;PRICE_MAX;BEDS;BATHS;GARAGES\n
       if (msg.includes('login')) {
         const params = msg.split(';');
 
         const user = getUser(params);
-        console.log('USUARIO lenght: ' + user.length);
+        // console.log("USUARIO lenght: "+user.length);
 
         if (!(user.length == 0)) {
           socket.write(String(user[0].idUser));
         }
       }
+
+      // Mensagem: --Sintaxe: register;EMAIL;PASSWORD\n
       if (msg.includes('register')) {
         const params = msg.split(';');
 
         const user = registerUser(params);
-        console.log('-------------------');
+        console.log("-------------------");
 
-        console.log(user);
+        // console.log(user);
         if (!(user.length == 0)) {
           socket.write(String(user[0].idUser));
         }
@@ -125,14 +143,14 @@ function initializeConnection() {
 
         const property = proposal(params);
 
-        console.log('Proposal : ', property);
+        // console.log('Proposal : ', property);
       }
       if (msg.includes('favorite')) {
         const params = msg.split(';');
 
         const property = favorites(params);
 
-        console.log('Favorite : ', property);
+        // console.log('Favorite : ', property);
       }
     });
 
