@@ -1,5 +1,14 @@
 const db = require("../../db_us_estate.json");
 
+/*
+
+Função responsável por implementar a seguinte mensagem:
+--Sintaxe: locations_list\n
+
+Mensagem de requisição para envio da localização de todas as propriedades da base de dados, independente de filtros.
+
+*/
+
 function getLocationsList() {
   var locations = [];
 
