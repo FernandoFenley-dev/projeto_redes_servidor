@@ -1,5 +1,4 @@
 const net = require('net');
-
 const MessageBuffer = require('../buffer/MessageBuffer');
 
 const getHousesList = require('../functions/housesList');
@@ -12,16 +11,13 @@ const registerUser = require('../functions/register');
 const proposal = require('../functions/proposal');
 const favorites = require('../functions/favorites');
 
-
 const ipLocal = '';
 
 const connectionOptions = {
   port: 29298,
-  host: ipLocal,
+  host: '',
   reuseAddress: true,
 };
-
-const clientes = [];
 
 const server = new net.Server();
 
@@ -107,21 +103,20 @@ function initializeConnection() {
         const params = msg.split(';');
 
         const user = getUser(params);
-        console.log("USUARIO lenght: "+user.length);
+        console.log('USUARIO lenght: ' + user.length);
 
-        if(!(user.length == 0)){
+        if (!(user.length == 0)) {
           socket.write(String(user[0].idUser));
         }
-
       }
       if (msg.includes('register')) {
         const params = msg.split(';');
 
         const user = registerUser(params);
-        console.log("-------------------");
-        
+        console.log('-------------------');
+
         console.log(user);
-        if(!(user.length == 0)){
+        if (!(user.length == 0)) {
           socket.write(String(user[0].idUser));
         }
       }
@@ -129,14 +124,14 @@ function initializeConnection() {
         const params = msg.split(';');
 
         const property = proposal(params);
-    
+
         console.log('Proposal : ', property);
       }
       if (msg.includes('favorite')) {
         const params = msg.split(';');
 
         const property = favorites(params);
-    
+
         console.log('Favorite : ', property);
       }
     });

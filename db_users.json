@@ -70,6 +70,13 @@
       "email": "meuEmail123@hotmail.com",
       "password": "email123",
       "proposals": []
+    },
+    {
+      "idUser": 11,
+      "email": "email123@hotmail.com",
+      "password": "senha",
+      "proposals": [],
+      "favorites": []
     }
   ]
 }
