@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
   res.send(ip);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`);
+// });
 
 console.log('Servidor Iniciado! Iniciar o cliente');
 initializeConnection();
