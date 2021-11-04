@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "default-gateway": "^6.0.3",
     "express": "^4.17.1",
-    "ip": "^1.1.5"
+    "ip": "^1.1.5",
+    "network": "^0.6.0"
   },
   "engines": {
     "node": "14.x"

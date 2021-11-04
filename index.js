@@ -1,10 +1,27 @@
 const initializeConnection = require('./src/server/server');
-
+const { networkInterfaces } = require('os');
 const axios = require('axios');
+const defaultGateway = require('default-gateway');
+const nets = networkInterfaces();
+const results = Object.create(null);
 
 function getIp() {
   var ip = require('ip');
-  return ip.address();
+  const { gateway, interface } = defaultGateway.v4.sync();
+  console.log(gateway)
+  
+  for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+      if (net.family === 'IPv4' && !net.internal && name === interface) {
+        if (!results[name]) {
+          results[name] = [];
+        }
+        ip = net.address;
+      }
+    }
+  }
+
+  return ip;
 }
 
 let ip = getIp();
